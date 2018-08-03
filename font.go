@@ -199,7 +199,7 @@ func (f *Font) Width(scale float32, fs string, argv ...interface{}) float32 {
 }
 
 //Height returns the height of a piece of text in pixels
-func (f *Font) Width(scale float32, fs string, argv ...interface{}) float32 {
+func (f *Font) Height(scale float32, fs string, argv ...interface{}) float32 {
 
 	var baseHeight float32
 	var height float32
