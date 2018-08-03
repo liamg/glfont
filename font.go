@@ -197,3 +197,46 @@ func (f *Font) Width(scale float32, fs string, argv ...interface{}) float32 {
 
 	return width
 }
+
+//Height returns the height of a piece of text in pixels
+func (f *Font) Width(scale float32, fs string, argv ...interface{}) float32 {
+
+	var baseHeight float32
+	var height float32
+
+	indices := []rune(fmt.Sprintf(fs, argv...))
+
+	if len(indices) == 0 {
+		return 0
+	}
+
+	lowChar := rune(32)
+
+	// Iterate through all characters in string
+	for i := range indices {
+
+		//get rune
+		runeIndex := indices[i]
+
+		if int(runeIndex) == 0x0a {
+			baseHeight = height
+			height = 0
+		}
+		
+		//skip runes that are not in font chacter range
+		if int(runeIndex)-int(lowChar) > len(f.fontChar) || runeIndex < lowChar {
+			continue
+		}
+
+		//find rune in fontChar list
+		ch := f.fontChar[runeIndex-lowChar]
+
+		// Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+		if ch.height * scale > height {
+			height = ch.height * scale
+		}
+
+	}
+
+	return baseHeight + height
+}
