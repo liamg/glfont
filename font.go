@@ -107,7 +107,6 @@ func (f *Font) Print(x, y float32, scale float32, text string) error {
 
 		//skip runes that are not in font chacter range
 		if int(runeIndex)-int(lowChar) > len(f.fontChar) || runeIndex < lowChar {
-			fmt.Printf("%c %d\n", runeIndex, runeIndex)
 			continue
 		}
 
@@ -183,7 +182,6 @@ func (f *Font) Width(scale float32, text string) float32 {
 
 		//skip runes that are not in font chacter range
 		if int(runeIndex)-int(lowChar) > len(f.fontChar) || runeIndex < lowChar {
-			fmt.Printf("%c %d\n", runeIndex, runeIndex)
 			continue
 		}
 
