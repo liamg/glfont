@@ -1,7 +1,6 @@
 package glfont
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/go-gl/gl/all-core/gl"
