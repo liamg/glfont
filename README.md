@@ -23,12 +23,12 @@ func LoadTrueTypeFont(program uint32, r io.Reader, scale int32, low, high rune, 
 ```
 LoadTrueTypeFont builds a set of textures based on a ttf files gylphs
 
-#### func (*Font) Printf
+#### func (*Font) Print
 
 ```go
-func (f *Font) Printf(x, y float32, scale float32, fs string, argv ...interface{}) error
+func (f *Font) Print(x, y float32, scale float32, text string) error
 ```
-Printf draws a string to the screen, takes a list of arguments like printf
+Print draws a string to the screen
 
 #### func (*Font) SetColor
 
@@ -47,9 +47,17 @@ UpdateResolution is needed when the viewport is resized
 #### func (f *Font) Width
 
 ```go
-func (f *Font) Width(scale float32, fs string, argv ...interface{}) float32
+func (f *Font) Width(scale float32, text string) float32
 ```
 Width returns the width of a piece of text in pixels
+
+#### func (f *Font) Height
+
+```go
+func (f *Font) Height(scale float32, text string) float32
+```
+Height returns the height of a piece of text in pixels
+
 
 ***
 
@@ -113,7 +121,7 @@ func main() {
 
      //set color and draw text
 		font.SetColor(1.0, 1.0, 1.0, 1.0) //r,g,b,a font color
-		font.Printf(100, 100, 1.0, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.") //x,y,scale,string,printf args
+		font.Print(100, 100, 1.0, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.") //x,y,scale,string
 
 		window.SwapBuffers()
 		glfw.PollEvents()
